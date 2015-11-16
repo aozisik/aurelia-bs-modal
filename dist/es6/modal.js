@@ -9,11 +9,11 @@ export class Modal {
     this.element = element;
   }
   attached(){
-    $(this.modal).modal({show: false})
-    .on('show.bs.modal', () => {	
+    $(this.modal).modal({show: false, backdrop: "static", keyboard: false})
+    .on('show.bs.modal', () => {
       this.showing = true;
     })
-    .on('hide.bs.modal', () => {	
+    .on('hide.bs.modal', () => {
       this.showing = false;
     });
   }
