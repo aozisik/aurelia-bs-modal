@@ -1,3 +1,4 @@
+/* */ 
 System.register(['aurelia-framework', 'jquery'], function (_export) {
   'use strict';
 
@@ -53,10 +54,25 @@ System.register(['aurelia-framework', 'jquery'], function (_export) {
         }, {
           key: 'showingChanged',
           value: function showingChanged(newValue) {
+
+            if(this.activationTimeout) {
+              clearTimeout(this.activationTimeout);
+            }
+
+            var modal = $(this.modal);
+
             if (newValue) {
-              $(this.modal).modal('show');
+
+              this.activationTimeout = setTimeout(function() {
+                modal.modal('show');
+              }, 50);
+
             } else {
-              $(this.modal).modal('hide');
+
+              this.activationTimeout = setTimeout(function() {
+                modal.modal('hide');
+              }, 50);
+
             }
           }
         }], null, _instanceInitializers);
